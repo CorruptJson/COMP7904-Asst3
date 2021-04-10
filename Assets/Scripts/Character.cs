@@ -32,6 +32,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rb.velocity = new Vector3(0,0,0);
         Cursor.visible = false;
         // mouse movement
         yaw += mouseSpeedX * Input.GetAxis("Mouse X");
