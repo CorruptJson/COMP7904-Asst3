@@ -9,6 +9,8 @@ public class Character : MonoBehaviour
     public float mouseSpeedX;
     public float mouseSpeedY;
 
+    public GameObject camera;
+
     private Rigidbody rb;
 
     private float yaw = 0.0f;
@@ -23,16 +25,20 @@ public class Character : MonoBehaviour
     void Start()
     {
         rb.freezeRotation = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = false;
         // mouse movement
         yaw += mouseSpeedX * Input.GetAxis("Mouse X");
         pitch -= mouseSpeedY * Input.GetAxis("Mouse Y");
 
-        transform.eulerAngles = new Vector3(pitch, yaw, 0);
+        camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+        transform.eulerAngles = new Vector3(0, yaw, 0);
     }
 
     void FixedUpdate()
