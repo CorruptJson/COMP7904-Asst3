@@ -25,11 +25,14 @@ public class Character : MonoBehaviour
     void Start()
     {
         rb.freezeRotation = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = false;
         // mouse movement
         yaw += mouseSpeedX * Input.GetAxis("Mouse X");
         pitch -= mouseSpeedY * Input.GetAxis("Mouse Y");
