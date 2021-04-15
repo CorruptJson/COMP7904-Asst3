@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour
         if (player.camera.GetComponent<Eyes>().obj == this.gameObject)
         {
             GetComponent<cakeslice.Outline>().enabled = true;
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
             {
                 Activate();
             }
