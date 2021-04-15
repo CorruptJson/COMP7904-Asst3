@@ -48,10 +48,7 @@ public class Character : MonoBehaviour
 
         camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
         transform.eulerAngles = new Vector3(0, yaw, 0);
-    }
 
-    void FixedUpdate()
-    {
         if (Input.GetKey(KeyCode.W))
         {
             Vector3 mov = new Vector3(0, 0, 1);
@@ -82,7 +79,10 @@ public class Character : MonoBehaviour
             mov = mov.normalized * speed * Time.deltaTime;
             rb.MovePosition(rb.position + transform.right * mov.x);
         }
+    }
 
+    void FixedUpdate()
+    {
         // Player walking sound loop
         if(Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == -1)
         {

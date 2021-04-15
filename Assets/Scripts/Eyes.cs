@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// script is mostly copied from unity docs
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
