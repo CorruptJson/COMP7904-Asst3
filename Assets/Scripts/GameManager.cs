@@ -5,7 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Switch bathDoor;
+    public Switch bathroomDoor;
+    public Switch bedroomDoor;
+    public Switch officeDoor;
+    
 
     void Awake()
     {
@@ -27,9 +30,20 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "bathroomDoor":
-                bathDoor.Change(bathDoor.item[1]);
+                bathroomDoor.Change(bathroomDoor.item[1]);
                 SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                break;
 
+            // todo: check keys
+            case "bedroomDoor":
+                bedroomDoor.Change(bedroomDoor.item[1]);
+                SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                break;
+
+            // todo: check keys
+            case "officeDoor":
+                officeDoor.Change(officeDoor.item[1]);
+                SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
                 break;
 
             default:
