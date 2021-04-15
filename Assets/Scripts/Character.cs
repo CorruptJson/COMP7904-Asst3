@@ -13,8 +13,8 @@ public class Character : MonoBehaviour
 
     private Rigidbody rb;
 
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
+    public float yaw;
+    public float pitch;
     private bool isWalking = false;
 
     void Awake()
