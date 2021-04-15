@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     private Character player;
+    public string interaction;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void Activate()
     {
-        Debug.Log("Empty Method Activated");
+        GameManager.instance.Interaction(interaction);
     }
 
 
