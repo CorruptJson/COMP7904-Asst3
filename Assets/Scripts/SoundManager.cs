@@ -81,6 +81,39 @@ public static class SoundManager
             currentlyPlayingAmbient = true;
         }
     }
+
+
+    public static void PlayPlayerWalk()
+    {
+        AudioSource ambientAudioSource;
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("Player");
+
+        if (mainCamera.GetComponent<AudioSource>() == null) // If there isn't already an audio source on the main cam then there is nothing to resume
+        {
+            return;
+        }
+        else // Resume the audio that was playing
+        {
+            ambientAudioSource = mainCamera.GetComponent<AudioSource>();
+            ambientAudioSource.Play();
+        }
+    }
+
+    public static void PausePlayerWalk()
+    {
+        AudioSource ambientAudioSource;
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("Player");
+
+        if (mainCamera.GetComponent<AudioSource>() == null) // If there isn't already an audio source on the main cam then there is nothing to resume
+        {
+            return;
+        }
+        else // Resume the audio that was playing
+        {
+            ambientAudioSource = mainCamera.GetComponent<AudioSource>();
+            ambientAudioSource.Pause();
+        }
+    }
 }
 
 
