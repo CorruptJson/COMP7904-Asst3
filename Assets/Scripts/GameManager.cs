@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public Switch bathroomDoor;
     public Switch bedroomDoor;
     public Switch officeDoor;
-    
+    public Switch laundryDoor;
 
     void Awake()
     {
@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
                 print("test");
                 break;
 
+            case "laundryDoor":
+                laundryDoor.Change(laundryDoor.item[1]);
+                SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                break;
+
             case "bathroomDoor":
                 bathroomDoor.Change(bathroomDoor.item[1]);
                 SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
@@ -45,6 +50,7 @@ public class GameManager : MonoBehaviour
                 officeDoor.Change(officeDoor.item[1]);
                 SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
                 break;
+
 
             default:
                 print("Invalid interaction string");
