@@ -7,8 +7,11 @@ public class AudioClips : MonoBehaviour
     public static AudioClips singleton;
     public AudioClip walk;
     public AudioClip openDoor;
+    public AudioClip closeDoor;
     public AudioClip tvStatic;
-    public AudioClip uiTick;
+    public AudioClip switchFlip;
+    public AudioClip unlock;
+    public AudioClip pickupKey;
 
     // Start is called before the first frame update
     void Start()

@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+    private bool isWalking = false;
 
     void Awake()
     {
@@ -80,6 +81,24 @@ public class Character : MonoBehaviour
             Vector3 mov = new Vector3(1, 0, 0);
             mov = mov.normalized * speed * Time.deltaTime;
             rb.MovePosition(rb.position + transform.right * mov.x);
+        }
+
+        // Player walking sound loop
+        if(Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == -1)
+        {
+            if(isWalking == false)
+            {
+                isWalking = true;
+                SoundManager.PlayPlayerWalk();
+            }
+        }
+        else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            if(isWalking == true)
+            {
+                SoundManager.PausePlayerWalk();
+                isWalking = false;
+            }
         }
     }
 
