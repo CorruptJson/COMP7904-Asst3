@@ -23,7 +23,6 @@ public static class SoundManager
         AudioSource.PlayClipAtPoint(sound, new Vector3(x,y,0), volume); // Creates an audio source at the location then plays one shot through it with the specified clip
     }
 
-
     // Plays a looping sound from an audio source in the player's camera.
     public static void StartAmbientSound(AudioClip sound, float volume)
     {
@@ -65,6 +64,7 @@ public static class SoundManager
             currentlyPlayingAmbient = false;
         }
     }
+
     public static void ResumeAmbientSound()
     {
         AudioSource ambientAudioSource;
@@ -81,7 +81,6 @@ public static class SoundManager
             currentlyPlayingAmbient = true;
         }
     }
-
 
     public static void PlayPlayerWalk()
     {
