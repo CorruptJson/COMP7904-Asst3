@@ -63,6 +63,7 @@ namespace cakeslice
 		{
 			get
 			{
+				Debug.Log("CEHCK: " + this.gameObject.name);
 				if (_SharedMaterials == null)
 					_SharedMaterials = Renderer.sharedMaterials;
 

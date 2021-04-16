@@ -17,6 +17,23 @@ public class GameManager : MonoBehaviour
     public Switch livingRoomLight;
     public Switch washroomLight;
     public Switch otherAreaLights;
+    public Switch safeDoor;
+
+    private bool bedroomKeyPickedUp;
+    private bool computerRoomKeyPickedUp;
+    private bool safeKeyPickedUp;
+
+    private bool bedroomUnlocked;
+    private bool computerRoomUnlocked;
+    private bool safeUnlocked;
+
+
+    public GameObject bedKey;
+    public GameObject compKey;
+    public GameObject safeKey;
+    public GameObject bedKeyHole;
+    public GameObject compKeyHole;
+    public GameObject safeKeyHole;
 
     void Awake()
     {
@@ -49,14 +66,40 @@ public class GameManager : MonoBehaviour
 
             // todo: check keys
             case "bedroomDoor":
-                bedroomDoor.Change(bedroomDoor.item[1]);
-                SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                if (bedroomUnlocked)
+                {
+                    bedroomDoor.Change(bedroomDoor.item[1]);
+                    SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                }
+                else
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.doorLocked, 1);
+                }
+                break;
+
+            case "safeUnlocked":
+                if (safeUnlocked)
+                {
+                    safeDoor.Change(safeDoor.item[1]);
+                    SoundManager.PlayOneClip(AudioClips.singleton.openSafe, 1);
+                }
+                else
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.safeLocked, 1);
+                }
                 break;
 
             // todo: check keys
             case "officeDoor":
-                officeDoor.Change(officeDoor.item[1]);
-                SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                if (computerRoomUnlocked)
+                {
+                    officeDoor.Change(officeDoor.item[1]);
+                    SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                }
+                else
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.doorLocked, 1);
+                }
                 break;
 
             case "kitchenLight":
@@ -171,6 +214,63 @@ public class GameManager : MonoBehaviour
                     SoundManager.PlayOneClip(AudioClips.singleton.switchFlip, 1);
                     break;
                 }
+
+            case "bedKeyPickup":
+                bedroomKeyPickedUp = true;
+                SoundManager.PlayOneClip(AudioClips.singleton.pickupKey, 1);
+                Destroy(bedKey);
+                break;
+
+            case "compKeyPickup":
+                computerRoomKeyPickedUp = true;
+                SoundManager.PlayOneClip(AudioClips.singleton.pickupKey, 1);
+                Destroy(compKey);
+                break;
+
+            case "safeKeyPickup":
+                safeKeyPickedUp = true;
+                SoundManager.PlayOneClip(AudioClips.singleton.pickupKey, 1);
+                Destroy(safeKey);
+                break;
+
+
+            case "unlockBedDoor":
+                if (bedroomKeyPickedUp)
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.unlock, 1);
+                    bedroomUnlocked = true;
+                }
+                else
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.doorLocked, 1);
+                }
+                break;
+
+            case "unlockCompDoor":
+                if (computerRoomKeyPickedUp)
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.unlock, 1);
+                    computerRoomUnlocked = true;
+                }
+                else
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.doorLocked, 1);
+                }
+                break;
+
+            case "unlockSafeDoor":
+                if (safeKeyPickedUp)
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.unlock, 1);
+                    safeUnlocked = true;
+                }
+                else
+                {
+                    SoundManager.PlayOneClip(AudioClips.singleton.safeLocked, 1);
+                }
+                break;
+
+
 
 
 
