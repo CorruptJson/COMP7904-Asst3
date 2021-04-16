@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 /// <summary>
 /// Sound manager controls playing sounds for all of the recurring sounds in game. (With the exception of 1 or 2 special cases)
 /// </summary>
 public static class SoundManager
 {
     private static bool currentlyPlayingAmbient = false;
+
 
     // Plays clip at location using AudioSource.playClipAtPoint, destroys audio source after playing clip
     // I know it seems redundant but having easy access to the references through this class is valuable

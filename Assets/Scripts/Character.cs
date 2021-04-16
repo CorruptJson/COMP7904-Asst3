@@ -20,6 +20,9 @@ public class Character : MonoBehaviour
     private float controls = 4.55f;
     private bool controlsTimer = false;
 
+    public GameObject window;
+    public GameObject brokenWindow;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,6 +55,8 @@ public class Character : MonoBehaviour
         // mouse movement
         if (controls <= 0)
         {
+            
+
             yaw += mouseSpeedX * Input.GetAxis("Mouse X");
             pitch -= mouseSpeedY * Input.GetAxis("Mouse Y");
 
@@ -63,6 +68,10 @@ public class Character : MonoBehaviour
             {
                 pitch = -90;
             }
+
+            //also swap windows
+            window.SetActive(false);
+            brokenWindow.SetActive(true);
         }
 
         camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
