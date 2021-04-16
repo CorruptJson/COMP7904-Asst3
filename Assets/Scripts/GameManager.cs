@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject bedKeyHole;
     public GameObject compKeyHole;
     public GameObject safeKeyHole;
+    public GameObject note;
 
     void Awake()
     {
@@ -49,14 +50,24 @@ public class GameManager : MonoBehaviour
     public void Interaction(string interaction)
     {
         // too lazy to make enums for this tbh
-        switch (interaction){
+        switch (interaction)
+        {
             case "test":
                 print("test");
                 break;
 
+            case "lockedDoor":
+                SoundManager.PlayOneClip(AudioClips.singleton.doorLocked, 1);
+                break;
+                
             case "laundryDoor":
                 laundryDoor.Change(laundryDoor.item[1]);
                 SoundManager.PlayOneClip(AudioClips.singleton.openDoor, 1);
+                break;
+
+            case "ransomNote":
+                note.SetActive(true);
+                SoundManager.PlayOneClip(AudioClips.singleton.pickupNote, 1);
                 break;
 
             case "bathroomDoor":
@@ -103,7 +114,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "kitchenLight":
-                if(kitchenLight.active == kitchenLight.item[1])
+                if (kitchenLight.active == kitchenLight.item[1])
                 {
                     kitchenLight.Change(kitchenLight.item[0]);
                     SoundManager.PlayOneClip(AudioClips.singleton.switchFlip, 1);
@@ -279,7 +290,7 @@ public class GameManager : MonoBehaviour
             default:
                 print("Invalid interaction string");
                 break;
-            
+
         }
     }
 
