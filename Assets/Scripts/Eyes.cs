@@ -12,7 +12,7 @@ public class Eyes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -31,11 +31,19 @@ public class Eyes : MonoBehaviour
         {
             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             //Debug.Log(hit.collider.gameObject.name);
-            obj = hit.collider.gameObject;
+
+            if (hit.distance < 2.5)
+            {
+                obj = hit.collider.gameObject;
+            }
+            else
+            {
+                obj = null;
+            }
         }
         else
         {
-           // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             //Debug.Log("Did not Hit");
         }
     }
