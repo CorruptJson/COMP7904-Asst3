@@ -17,7 +17,8 @@ public class Character : MonoBehaviour
     public float pitch;
     private bool isWalking = false;
 
-    public bool controls = false;
+    private float controls = 4.55f;
+    private bool controlsTimer = false;
 
     void Awake()
     {
@@ -32,17 +33,24 @@ public class Character : MonoBehaviour
 
     }
 
-    public void EnableControls() {
-        controls = true;
+    public void EnableControls()
+    {
+        controlsTimer = true;
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
+        if (controlsTimer && controls > 0)
+        {
+            controls -= Time.deltaTime;
+        }
         rb.velocity = new Vector3(0, 0, 0);
         Cursor.visible = false;
         // mouse movement
-        if (controls)
+        if (controls <= 0)
         {
             yaw += mouseSpeedX * Input.GetAxis("Mouse X");
             pitch -= mouseSpeedY * Input.GetAxis("Mouse Y");
@@ -65,7 +73,7 @@ public class Character : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (controls)
+        if (controls <= 0)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -97,23 +105,23 @@ public class Character : MonoBehaviour
                 mov = mov.normalized * speed * Time.deltaTime;
                 rb.MovePosition(rb.position + transform.right * mov.x);
             }
-        }
 
-        // Player walking sound loop
-        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == -1)
-        {
-            if (isWalking == false)
+            // Player walking sound loop
+            if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == -1)
             {
-                isWalking = true;
-                SoundManager.PlayPlayerWalk();
+                if (isWalking == false)
+                {
+                    isWalking = true;
+                    SoundManager.PlayPlayerWalk();
+                }
             }
-        }
-        else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
-        {
-            if (isWalking == true)
+            else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
             {
-                SoundManager.PausePlayerWalk();
-                isWalking = false;
+                if (isWalking == true)
+                {
+                    SoundManager.PausePlayerWalk();
+                    isWalking = false;
+                }
             }
         }
     }
