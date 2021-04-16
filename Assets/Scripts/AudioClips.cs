@@ -12,6 +12,9 @@ public class AudioClips : MonoBehaviour
     public AudioClip switchFlip;
     public AudioClip unlock;
     public AudioClip pickupKey;
+    public AudioClip doorLocked;
+    public AudioClip safeLocked;
+    public AudioClip openSafe;
 
     // Start is called before the first frame update
     void Start()

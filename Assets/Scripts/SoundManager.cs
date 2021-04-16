@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 /// <summary>
 /// Sound manager controls playing sounds for all of the recurring sounds in game. (With the exception of 1 or 2 special cases)
 /// </summary>
 public static class SoundManager
 {
     private static bool currentlyPlayingAmbient = false;
+
 
     // Plays clip at location using AudioSource.playClipAtPoint, destroys audio source after playing clip
     // I know it seems redundant but having easy access to the references through this class is valuable
@@ -22,7 +26,6 @@ public static class SoundManager
         float y = GameObject.FindGameObjectWithTag("MainCamera").transform.position.y;
         AudioSource.PlayClipAtPoint(sound, new Vector3(x,y,0), volume); // Creates an audio source at the location then plays one shot through it with the specified clip
     }
-
 
     // Plays a looping sound from an audio source in the player's camera.
     public static void StartAmbientSound(AudioClip sound, float volume)
@@ -65,6 +68,7 @@ public static class SoundManager
             currentlyPlayingAmbient = false;
         }
     }
+
     public static void ResumeAmbientSound()
     {
         AudioSource ambientAudioSource;
@@ -81,7 +85,6 @@ public static class SoundManager
             currentlyPlayingAmbient = true;
         }
     }
-
 
     public static void PlayPlayerWalk()
     {
