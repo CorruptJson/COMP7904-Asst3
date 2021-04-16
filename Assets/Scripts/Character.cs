@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     private bool isWalking = false;
 
     private float controls = 4.55f;
-    private bool controlsTimer = false;
+    public bool controlsTimer = false;
 
     public GameObject window;
     public GameObject brokenWindow;
